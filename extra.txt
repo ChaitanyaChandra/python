@@ -1,0 +1,120 @@
+# cmd line arguments in python 
+import sys
+a = sys.argv
+print(f"len of argv is :{len(a)}")
+print(f"print all argv\t:{a}")
+for x in a:
+    print(f"\n{x}")
+
+-----------------------------------------------------------------------------
+def add(a,b,*args,c=2,d=3,**kwargs):
+
+    def printf():
+        print(f"calculation of perameters:{a*b}")
+        print(f"this is default perameters :{c*d}")
+
+    def forloop():
+
+        for f,j in kwargs.items():
+            print(f"this is key:{f} and this is value:{j} ")
+
+        i = 0
+        for e in args:
+            i += e
+            print(f"this is args:{i}")
+
+    forloop()
+    printf()
+add(2,3,2,3,one="chaitanya",two="chandra")
+
+-----------------------------------------------------------
+
+# map is used to get data form the source 
+a = range(1,11)
+b = list(map(lambda x:x*2,a)) # list must be used in order to get output 
+print(b)
+print("---------------------------------------")
+c = range(1,11)
+d = list(filter(lambda x:x%2==0,c))
+print(d)
+
+--------------------------------------------------------------------------
+
+# encapsulation is grouping of functions (class variables ) with class object is known as encapsulation
+# __init__ is a type of constructor which will be initiate automatically in case of method(function) we need to call below
+class name :
+    def __init__(self,first,last): # static variables (class variables)
+        self.First = first # non static (instance variables )
+        self.Last = last
+    def __repr__(self):
+        return f"this is your first name :{self.First} and this is your last name :{self.Last} "
+    def chowdary(self):
+        print("this is chowdary")
+
+name1 = name("chaitanya","chandra")
+print(name1) # calling a class variables
+print(name1.First) # calling a instance variables
+print(name1.chowdary())
+
+--------------------------------------------------------------------------
+
+# counting and viewing users with OOP(encapsulation)
+class student:
+    count = 0
+    Namecount = []
+
+    def __init__(self,first,last):
+        self.First = first
+        self.Last = last
+        student.count += 1
+        student.Namecount.append(self.First)
+
+    def delete(self):
+        student.count -= 1
+        student.Namecount.remove(self.First)
+        return f"\nstudent removed! \nName:{self.First}\n"
+
+
+
+student1 = student("chaitanya","chandra")
+student2 = student("chaitu","chowdary")
+print(student.count)
+print(student.Namecount)
+print(student1.delete())
+print(student.Namecount)
+
+--------------------------------------------------------------------------
+# has a relation ship       one class variables are  are used in another class
+# is a relation ship       inheritance    one class properties
+# polymorphism  using a same name of functions with different parameters or same perameterss in another class
+# abstraction using public and private variables _ and __
+class name:
+    _a = "chandra"
+    _b_a = "chowdary"
+
+    def __init__(self,first,last):
+        self.first = first
+        self.last = last
+
+class sec: #  has a relation ship
+    def reuse(self):
+        print(name._a)
+
+class Name(name): # is a relationship (inheritance)
+    Users = 0
+    _c_ = "chowdary"
+    def __init__(self,first ,age):
+        super().__init__(first ,last = name._b_a)  # polymorphism using super
+        #  private (__,_) variables
+
+
+name1 = name("chaitanya","chandra") # users
+name2 = name("chaitu","chandra") # users
+Name1 = Name("chaitanya",20) # users
+Name2 = Name("chaitu",20) # users
+
+print(Name1.last) # calling inheritance
+
+z = sec() # calling has a relation ship
+print(z.reuse()) # calling has a relation ship
+--------------------------------------------------------------------------
